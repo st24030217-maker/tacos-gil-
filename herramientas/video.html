@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Estudio de video · Gil's</title>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--guinda:#7B1A13;--rojo:#C8392C;--negro:#141110;--carbon:#221C19;--pergamino:#EDE3D1;--papel:#F6EFE2;--laton:#C79A3E;--gris:#6E5F52;
+--grano:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--negro);font-family:Barlow,sans-serif;color:var(--pergamino)}
+.scene{position:absolute;inset:0;overflow:hidden;display:none}
+.rye{font-family:Rye;font-weight:400}
+.cond{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.3em;font-weight:700}
+.abs{position:absolute}
+.rayos{position:absolute;left:50%;top:50%;width:3200px;height:3200px;margin:-1600px 0 0 -1600px;border-radius:50%;
+  -webkit-mask:radial-gradient(circle,#000 0,transparent 60%);mask:radial-gradient(circle,#000 0,transparent 60%)}
+.rayos.osc{background:repeating-conic-gradient(from 0deg,rgba(199,154,62,.10) 0 5deg,transparent 5deg 10deg)}
+.rayos.claro{background:repeating-conic-gradient(from 0deg,rgba(123,26,19,.09) 0 5deg,transparent 5deg 10deg)}
+.rayos.rojo{background:repeating-conic-gradient(from 0deg,rgba(0,0,0,.16) 0 5deg,transparent 5deg 10deg)}
+.fondo-negro{background:radial-gradient(60% 70% at 50% 45%,#3a1712 0,#141110 70%)}
+.fondo-papel{background:radial-gradient(60% 70% at 50% 45%,#FBF6EC 0,#E6D9C1 80%)}
+.fondo-guinda{background:radial-gradient(60% 70% at 50% 45%,#9B241A 0,#4E0F0A 85%)}
+.marco{position:absolute;inset:28px;border:2px dashed rgba(199,154,62,.35);pointer-events:none}
+.marco.osc{border-color:rgba(123,26,19,.3)}
+
+/* Medalla */
+.med{width:300px;height:300px;border-radius:50%;background:var(--papel);display:grid;place-items:center;
+  box-shadow:inset 0 0 0 10px var(--guinda),inset 0 0 0 18px var(--papel),inset 0 0 0 21px var(--negro),0 0 0 8px rgba(199,154,62,.85),0 30px 80px rgba(0,0,0,.6)}
+.med img{width:66%;transform:translateY(4%)}
+
+/* Overlays globales */
+#grano{position:absolute;inset:-50px;background:var(--grano);opacity:.10;mix-blend-mode:overlay;pointer-events:none;z-index:50}
+#viñeta{position:absolute;inset:0;background:radial-gradient(75% 75% at 50% 50%,transparent 55%,rgba(0,0,0,.55));pointer-events:none;z-index:49}
+#bug{position:absolute;left:56px;top:46px;z-index:45;display:flex;align-items:center;gap:14px}
+#bug .m{width:58px;height:58px;border-radius:50%;background:var(--papel);display:grid;place-items:center;box-shadow:inset 0 0 0 3px var(--guinda),0 0 0 2px rgba(199,154,62,.8)}
+#bug .m img{width:68%}
+#bug span{font-family:"Barlow Condensed";letter-spacing:.28em;font-weight:700;font-size:16px;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+#barra{position:absolute;left:0;bottom:0;height:7px;z-index:46;background:linear-gradient(90deg,var(--guinda),var(--laton))}
+.wipe{position:absolute;top:-10%;height:120%;width:150%;left:-25%;z-index:60;transform:translateX(150%) skewX(-14deg)}
+#w1{background:var(--laton)} #w2{background:var(--guinda)} #w3{background:var(--negro)}
+
+/* ---------- S1 Intro ---------- */
+#s1 .med{position:absolute;left:810px;top:120px}
+#s1 .txt{position:absolute;left:50%;top:455px;width:640px;margin-left:-320px}
+#s1 .tag{position:absolute;left:0;right:0;top:830px;text-align:center;font-size:58px;color:var(--papel)}
+#s1 .tag span{display:inline-block}
+#s1 .tag em{font-style:normal;color:var(--laton)}
+#s1 .anio{position:absolute;left:0;right:0;top:920px;text-align:center;color:var(--laton);font-size:22px}
+
+/* ---------- S2 Montaje ---------- */
+.plato{position:absolute;inset:0;overflow:hidden}
+.plato img.f{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.plato .sombra{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,17,16,.95) 0,rgba(20,17,16,.75) 32%,rgba(20,17,16,0) 62%),linear-gradient(0deg,rgba(20,17,16,.6),transparent 40%)}
+.plato .info{position:absolute;left:120px;top:250px;width:820px}
+.plato .num{font-family:"Barlow Condensed";font-weight:700;letter-spacing:.3em;color:var(--laton);font-size:22px}
+.sello{display:inline-block;margin:22px 0 18px;padding:10px 26px;border:5px solid var(--rojo);color:var(--rojo);font-family:Rye;font-size:44px;letter-spacing:.06em;transform-origin:center;
+  box-shadow:inset 0 0 0 3px rgba(20,17,16,.6);background:rgba(20,17,16,.35)}
+.plato h2{font-family:Rye;font-weight:400;font-size:112px;line-height:1;color:var(--papel);text-shadow:0 8px 30px rgba(0,0,0,.6)}
+.plato p{font-size:30px;opacity:.9;margin-top:18px;max-width:640px}
+.plato .rec{margin-top:30px;display:flex;align-items:baseline;gap:20px}
+.plato .rec span{font-family:"Barlow Condensed";letter-spacing:.3em;font-size:22px;font-weight:700;text-transform:uppercase}
+.plato .rec b{font-family:Rye;font-weight:400;font-size:96px;color:var(--laton);line-height:1}
+#ticks{position:absolute;left:120px;bottom:90px;display:flex;gap:12px;z-index:5}
+#ticks i{width:70px;height:6px;background:rgba(237,227,209,.25);position:relative;overflow:hidden}
+#ticks i b{position:absolute;inset:0;background:var(--laton);transform-origin:left;transform:scaleX(0)}
+
+/* ---------- Títulos ---------- */
+.titulo{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.titulo .parte{font-size:26px;color:var(--laton)}
+.titulo h1{font-family:Rye;font-weight:400;font-size:200px;line-height:.95;color:var(--papel)}
+.titulo h1 .l1,.titulo h1 .l2{display:block}
+.titulo h1 .l2{color:var(--laton)}
+.titulo .linea{height:4px;background:var(--papel);margin:24px auto 18px;width:0}
+.titulo p{font-size:34px;opacity:.9}
+
+/* ---------- S4 Laptop ---------- */
+#lap{position:absolute;left:70px;top:150px;width:1200px}
+#lap .pantalla{background:#0c0a09;border-radius:26px 26px 0 0;padding:22px 22px 26px;box-shadow:inset 0 0 0 3px #3b332e}
+#lap .pantalla .vista{width:1156px;height:722px;overflow:hidden;border-radius:6px;position:relative;background:#EDE3D1}
+#lap iframe{width:1280px;height:800px;border:0;transform:scale(.903125);transform-origin:0 0}
+#lap .base{height:30px;margin:0 -70px;background:linear-gradient(#5b524c,#2c2622);border-radius:0 0 30px 30px;position:relative}
+#lap .base::before{content:"";position:absolute;left:50%;top:0;width:200px;height:12px;margin-left:-100px;background:#1d1916;border-radius:0 0 12px 12px}
+#lap .sombraP{height:40px;margin:0 -40px;background:radial-gradient(50% 50% at 50% 0,rgba(0,0,0,.45),transparent 70%)}
+.col{position:absolute;left:1340px;top:180px;width:520px;color:var(--negro)}
+.col .cond{color:var(--guinda);font-size:20px}
+.col h3{font-family:Rye;font-weight:400;font-size:66px;line-height:1.02;margin:10px 0 34px}
+.punto{display:flex;align-items:center;gap:20px;padding:18px 22px;margin-bottom:14px;background:rgba(246,239,226,.9);border-left:6px solid var(--guinda);box-shadow:0 10px 24px rgba(20,17,16,.12);font-size:27px;font-weight:700;opacity:0}
+.punto i{font-style:normal;width:46px;height:46px;flex:none;border-radius:50%;background:var(--guinda);color:var(--papel);display:grid;place-items:center;font-family:Rye;font-size:20px}
+.punto.act{background:var(--negro);color:var(--papel);border-color:var(--laton)}
+.punto.act i{background:var(--laton);color:var(--negro)}
+
+/* ---------- S6 Teléfono ---------- */
+#tel{position:absolute;left:400px;top:110px;width:400px;height:860px;border-radius:60px;background:#0c0a09;padding:14px;box-shadow:inset 0 0 0 3px #3b332e,0 50px 100px rgba(0,0,0,.6),0 0 0 2px rgba(199,154,62,.25)}
+#tel::before{content:"";position:absolute;top:26px;left:50%;width:110px;height:30px;margin-left:-55px;background:#0c0a09;border-radius:20px;z-index:3}
+#tel .vista{width:372px;height:832px;border-radius:46px;overflow:hidden;position:relative;background:#EDE3D1}
+#tel iframe{width:390px;height:872px;border:0;transform:scale(.953846);transform-origin:0 0}
+#toque{position:absolute;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;border:5px solid var(--laton);z-index:20;opacity:0;pointer-events:none}
+#toque::after{content:"";position:absolute;inset:26px;border-radius:50%;background:rgba(199,154,62,.85)}
+#s6 .der{position:absolute;left:960px;top:250px;width:860px}
+#s6 .der .cond{color:var(--laton);font-size:22px}
+#s6 .frase{position:relative;height:330px;margin-top:16px}
+#s6 .frase h3{position:absolute;inset:0;font-family:Rye;font-weight:400;font-size:100px;line-height:1.02;color:var(--papel);opacity:0}
+#s6 .frase h3 em{font-style:normal;color:var(--laton)}
+#s6 .pasos{display:flex;gap:16px;margin-top:20px}
+#s6 .pasos div{flex:1;padding:18px;border:2px dashed rgba(237,227,209,.35);font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:22px;text-align:center;color:rgba(237,227,209,.6)}
+#s6 .pasos div.act{border:2px solid var(--laton);background:rgba(199,154,62,.15);color:var(--papel)}
+#s6 .pasos b{display:block;font-family:Rye;font-weight:400;font-size:40px;color:var(--laton);letter-spacing:0}
+
+/* ---------- S7 QR ---------- */
+#tarjeta{position:absolute;left:250px;top:150px;width:520px;height:780px;background:#F3E6CC;display:flex;flex-direction:column;align-items:center;padding:40px 34px;color:#141110;
+  outline:7px solid #141110;outline-offset:-20px;box-shadow:0 50px 100px rgba(20,17,16,.45)}
+#tarjeta::before{content:"";position:absolute;inset:32px;border:2px dashed #7B1A13}
+#tarjeta .logo{width:360px;margin-top:20px}
+#tarjeta h4{font-family:Rye;font-weight:400;font-size:40px;margin:18px 0 6px}
+#tarjeta .sub{font-family:"Barlow Condensed";letter-spacing:.24em;text-transform:uppercase;font-size:16px;color:#6E5F52;margin-bottom:22px}
+#qrw{position:relative;background:#fff;padding:16px;border:7px solid #7B1A13;box-shadow:0 0 0 4px #F3E6CC,0 0 0 8px #141110}
+#qrw img{width:250px;height:250px;display:block}
+#laser{position:absolute;left:-10px;right:-10px;height:4px;background:#ff3b2f;box-shadow:0 0 18px 6px rgba(255,59,47,.6);opacity:0}
+.esq{position:absolute;width:56px;height:56px;border:7px solid var(--laton);opacity:0}
+.esq.a{left:-34px;top:-34px;border-right:0;border-bottom:0}.esq.b{right:-34px;top:-34px;border-left:0;border-bottom:0}
+.esq.c{left:-34px;bottom:-34px;border-right:0;border-top:0}.esq.d{right:-34px;bottom:-34px;border-left:0;border-top:0}
+#ok{position:absolute;left:600px;top:560px;background:#1F7A4D;color:#fff;padding:18px 30px;border-radius:999px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:26px;box-shadow:0 20px 40px rgba(0,0,0,.3);opacity:0;white-space:nowrap}
+#s7 .col{left:1000px;top:250px;width:800px}
+#s7 .col h3{font-size:110px}
+
+/* ---------- S8 Outro ---------- */
+#s8 .med{position:absolute;left:810px;top:110px}
+#s8 h1{position:absolute;left:0;right:0;top:450px;text-align:center;font-family:Rye;font-weight:400;font-size:150px;color:var(--papel)}
+#s8 h1 em{font-style:normal;color:var(--laton)}
+#s8 .chips{position:absolute;left:0;right:0;top:680px;display:flex;justify-content:center;gap:24px}
+#s8 .chips div{padding:20px 34px;border:2px dashed rgba(237,227,209,.5);font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:28px;opacity:0}
+#s8 .chips b{color:var(--laton)}
+#s8 .dir{position:absolute;left:0;right:0;top:840px;text-align:center;font-size:26px;opacity:0}
+#s8 .dir b{color:var(--laton);font-family:"Barlow Condensed";letter-spacing:.2em;text-transform:uppercase}
+#negro{position:absolute;inset:0;background:#000;z-index:70;opacity:0}
+</style></head>
+<body>
+
+<!-- S1 INTRO -->
+<div class="scene fondo-negro" id="s1">
+  <div class="rayos osc" id="r1"></div><div class="marco"></div>
+  <div class="med" id="s1med"><img src="../img/vaquero.png"></div>
+  <img class="txt" id="s1txt" src="../img/logo-texto-claro.png">
+  <div class="tag rye" id="s1tag"></div>
+  <div class="anio cond" id="s1anio">Gómez Palacio · Durango</div>
+</div>
+
+<!-- S2 MONTAJE -->
+<div class="scene" id="s2">
+  <div id="platos"></div>
+  <div id="ticks"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+</div>
+
+<!-- S3 TÍTULO WEB -->
+<div class="scene fondo-guinda" id="s3">
+  <div class="rayos rojo" id="r3"></div><div class="marco"></div>
+  <div class="titulo"><div>
+    <div class="parte cond">★ Parte I ★</div>
+    <h1><span class="l1">Página</span><span class="l2">Web</span></h1>
+    <div class="linea"></div><p>Casi 50 años de historia, ahora en internet</p>
+  </div></div>
+</div>
+
+<!-- S4 LAPTOP -->
+<div class="scene fondo-papel" id="s4">
+  <div class="rayos claro" id="r4"></div><div class="marco osc"></div>
+  <div id="lap"><div class="pantalla"><div class="vista"><iframe id="web" src="../index.html"></iframe></div></div><div class="base"></div><div class="sombraP"></div></div>
+  <div class="col">
+    <div class="cond">★ Página web</div>
+    <h3>Tu restaurante, abierto 24/7 en internet</h3>
+    <div class="punto" id="p1"><i>1</i>Tu historia desde 1977</div>
+    <div class="punto" id="p2"><i>2</i>Fotos que dan hambre</div>
+    <div class="punto" id="p3"><i>3</i>Menú digital con QR</div>
+    <div class="punto" id="p4"><i>4</i>Mapa, teléfono y WhatsApp</div>
+  </div>
+</div>
+
+<!-- S5 TÍTULO MENÚ -->
+<div class="scene fondo-negro" id="s5">
+  <div class="rayos osc" id="r5"></div><div class="marco"></div>
+  <div class="titulo"><div>
+    <div class="parte cond">★ Parte II ★</div>
+    <h1><span class="l1">Menú</span><span class="l2">Digital</span></h1>
+    <div class="linea"></div><p>Busca, elige y pide desde tu mesa</p>
+  </div></div>
+</div>
+
+<!-- S6 TELÉFONO -->
+<div class="scene fondo-negro" id="s6">
+  <div class="rayos osc" id="r6"></div><div class="marco"></div>
+  <div id="tel"><div class="vista"><iframe id="menu" src="../menu.html"></iframe></div></div>
+  <div id="toque"></div>
+  <div class="der">
+    <div class="cond">★ Menú digital</div>
+    <div class="frase">
+      <h3 id="f1">Todo el menú en <em>su celular</em></h3>
+      <h3 id="f2">Arma tu pedido con <em>un toque</em></h3>
+      <h3 id="f3">Y se envía directo por <em>WhatsApp</em></h3>
+    </div>
+    <div class="pasos"><div id="ps1"><b>1</b>Escanea</div><div id="ps2"><b>2</b>Elige</div><div id="ps3"><b>3</b>Pide</div></div>
+  </div>
+</div>
+
+<!-- S7 QR -->
+<div class="scene fondo-papel" id="s7">
+  <div class="rayos claro" id="r7"></div><div class="marco osc"></div>
+  <div id="tarjeta">
+    <img class="logo" src="../img/logo.png">
+    <h4>ESCANEA EL MENÚ</h4><div class="sub">Apunta la cámara de tu celular</div>
+    <div id="qrw"><img src="../qr-menu.png"><div id="laser"></div><i class="esq a"></i><i class="esq b"></i><i class="esq c"></i><i class="esq d"></i></div>
+  </div>
+  <div id="ok">✓ Menú abierto</div>
+  <div class="col">
+    <div class="cond">★ Parte III · Código QR</div>
+    <h3>Escanea y ordena</h3>
+    <div class="punto" id="q1"><i>★</i>Sin descargar aplicaciones</div>
+    <div class="punto" id="q2"><i>★</i>Tarjetas listas para cada mesa</div>
+    <div class="punto" id="q3"><i>★</i>Cambias precios sin reimprimir</div>
+  </div>
+</div>
+
+<!-- S8 OUTRO -->
+<div class="scene fondo-negro" id="s8">
+  <div class="rayos osc" id="r8"></div><div class="marco"></div>
+  <div class="med" id="s8med"><img src="../img/vaquero.png"></div>
+  <h1 id="s8h">¿Lo <em>lanzamos</em>?</h1>
+  <div class="chips"><div id="c1"><b>★</b> Página web</div><div id="c2"><b>★</b> Menú digital</div><div id="c3"><b>★</b> Código QR</div></div>
+  <div class="dir" id="s8dir"><b>Gil's Restaurant · Est. 1977</b><br>Av. Victoria 277, Centro · Gómez Palacio, Dgo.</div>
+</div>
+
+<div id="bug"><div class="m"><img src="../img/vaquero.png"></div><span>Gil's Restaurant · Est. 1977</span></div>
+<div id="barra"></div>
+<div class="wipe" id="w1"></div><div class="wipe" id="w2"></div><div class="wipe" id="w3"></div>
+<div id="viñeta"></div><div id="grano"></div><div id="negro"></div>
+
+<script src="../menu-data.js"></script>
+<script>
+// ===== utilidades =====
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, a, b) => cl((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);
+const eio = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+const st = (el, css) => Object.assign(el.style, css);
+const subir = (el, x, d = 60) => st(el, { opacity: x, transform: `translateY(${(1 - x) * d}px)` });
+
+// ===== línea de tiempo (segundos) =====
+const S = { s1: [0, 5.6], s2: [5.6, 14], s3: [14, 16.2], s4: [16.2, 27.4], s5: [27.4, 29.6], s6: [29.6, 40.6], s7: [40.6, 47], s8: [47, 53.5] };
+window.TOTAL = 53.5;
+const CORTES = [5.6, 14, 16.2, 27.4, 29.6, 40.6, 47];
+
+// ===== montaje de platillos =====
+const PLATOS = [
+  { img: 'tacos-asada', n: 'Tacos de Asada', d: 'Res al carbón con guacamole, cebolla y cilantro', p: 110 },
+  { img: 'tacos-pastor', n: 'Tacos al Pastor', d: 'Cerdo adobado al trompo con piña', p: 95 },
+  { img: 'arrachera', n: 'Arrachera', d: 'Marinada de la casa, 300 g al carbón', p: 245 },
+  { img: 'parrillada', n: "Parrillada Gil's", d: 'Para dos: arrachera, chorizo, costilla y más', p: 520 }
+];
+$('#platos').innerHTML = PLATOS.map((x, i) => `
+  <div class="plato" id="pl${i}"><img class="f" src="../img/video/${x.img}.jpg"><div class="sombra"></div>
+    <div class="info"><div class="num">${String(i + 1).padStart(2, '0')} / 04 · Los más buscados</div>
+      <div class="sello">SE BUSCA</div><h2>${x.n}</h2><p>${x.d}</p>
+      <div class="rec"><span>Recompensa</span><b>$${x.p}</b></div></div></div>`).join('');
+
+// tagline letra por letra
+$('#s1tag').innerHTML = 'Sazón y <em>tradición</em>'.replace(/(<em>|<\/em>)|(.)/g, (m, tag, ch) => tag ? tag : `<span>${ch === ' ' ? '&nbsp;' : ch}</span>`);
+
+// ===== preparación (offsets de iframes) =====
+let W = {}, M = {}, hechos = {};
+window.preparar = async () => {
+  await document.fonts.ready;
+  // las escenas deben estar visibles para medir dentro de los iframes
+  $('#s4').style.display = $('#s6').style.display = 'block';
+  await new Promise(r => setTimeout(r, 600));
+  const w = $('#web').contentDocument, m = $('#menu').contentDocument;
+  const top = s => { const e = w.querySelector(s); return e.getBoundingClientRect().top + w.defaultView.scrollY; };
+  W = { hist: top('#historia') - 74, cart: top('#carteles') - 120, qr: top('.qr-banda') - 74, vis: top('#visitanos') - 60 };
+  const mt = s => m.querySelector(s).getBoundingClientRect().top + m.defaultView.scrollY - 150;
+  M = { tacos: mt('#tacos'), rancho: mt('#rancho') };
+  // quitar el botón flotante de WhatsApp dentro de la laptop para un look limpio
+  const f = w.querySelector('.flotante'); if (f) f.style.display = 'none';
+  // mostrar todas las secciones ya reveladas (sin esperar animaciones en tiempo real)
+  const css = w.createElement('style'); css.textContent = '.rev{transition:none!important}'; w.head.appendChild(css);
+  w.querySelectorAll('.rev').forEach(e => e.classList.add('ver'));
+  return true;
+};
+const scrollW = y => $('#web').contentWindow.scrollTo({ top: y, behavior: 'instant' });
+const scrollM = y => $('#menu').contentWindow.scrollTo({ top: y, behavior: 'instant' });
+const keyframes = (u, kf) => {
+  for (let i = 0; i < kf.length - 1; i++) {
+    const [a, ya] = kf[i], [b, yb] = kf[i + 1];
+    if (u <= b) return lerp(ya, yb, eio(P(u, a, b)));
+  }
+  return kf[kf.length - 1][1];
+};
+function tocar(i) {
+  const m = $('#menu'), btn = m.contentDocument.querySelectorAll('.mas')[i];
+  const r = btn.getBoundingClientRect(), f = m.getBoundingClientRect(), k = .953846;
+  hechos.toque = { x: f.left + (r.left + r.width / 2) * k, y: f.top + (r.top + r.height / 2) * k };
+  btn.click();
+}
+
+// ===== render de un cuadro =====
+window.render = (t, frame = 0) => {
+  for (const [id, [a, b]] of Object.entries(S)) $('#' + id).style.display = (t >= a && t < b) ? 'block' : 'none';
+  const u = id => t - S[id][0];
+
+  // overlays
+  st($('#grano'), { backgroundPosition: `${(frame * 137) % 300}px ${(frame * 89) % 300}px` });
+  st($('#barra'), { width: (t / TOTAL * 100) + '%' });
+  const bugOn = t > 6 && t < 46.6;
+  const claro = (t >= S.s4[0] && t < S.s4[1]) || (t >= S.s7[0] && t < S.s7[1]);
+  st($('#bug'), { opacity: bugOn ? 1 : 0, color: claro ? '#141110' : '#EDE3D1' });
+  $('#bug span').style.textShadow = claro ? 'none' : '';
+  $$('.rayos').forEach(r => r.style.transform = `rotate(${t * 4}deg)`);
+
+  // cortinillas diagonales
+  let wx = 150;
+  for (const c of CORTES) { const q = P(t, c - .42, c + .42); if (q > 0 && q < 1) wx = lerp(150, -150, eio(q)); }
+  st($('#w1'), { transform: `translateX(${wx + 7}%) skewX(-14deg)` });
+  st($('#w2'), { transform: `translateX(${wx}%) skewX(-14deg)` });
+  st($('#w3'), { transform: `translateX(${wx - 6}%) skewX(-14deg)` });
+
+  // ---- S1 ----
+  if (t < S.s1[1]) {
+    const x = u('s1');
+    const k = back(P(x, .2, 1.1));
+    st($('#s1med'), { transform: `scale(${k}) rotate(${(1 - P(x, .2, 1.1)) * -90}deg)`, opacity: P(x, .2, .4) });
+    subir($('#s1txt'), eo(P(x, .9, 1.7)), 80);
+    $$('#s1tag span').forEach((s, i) => { const q = eo(P(x, 1.7 + i * .05, 2.1 + i * .05)); st(s, { opacity: q, transform: `translateY(${(1 - q) * 40}px) scale(${lerp(1.6, 1, q)})` }); });
+    subir($('#s1anio'), eo(P(x, 2.8, 3.4)), 30);
+    st($('#s1'), { transform: `scale(${1 + x * .012})` });
+  }
+
+  // ---- S2 montaje ----
+  if (t >= S.s2[0] && t < S.s2[1]) {
+    const x = u('s2'), dur = 2.1;
+    PLATOS.forEach((_, i) => {
+      const el = $('#pl' + i), a = i * dur, lx = x - a;
+      if (x < a - .01 || x > a + dur + .5) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+      // revelado diagonal (excepto el primero, que entra con la cortinilla)
+      const q = i === 0 ? 1 : eio(P(lx, 0, .45));
+      const L = (1 - q) * 130;
+      el.style.clipPath = `polygon(${L}% 0, 130% 0, 130% 100%, ${L - 20}% 100%)`;
+      el.style.zIndex = i + 1;
+      const img = el.querySelector('img.f');
+      st(img, { transform: `scale(${lerp(1.18, 1.04, P(lx, 0, dur + .5))}) translateX(${lerp(-1.5, 1.5, P(lx, 0, dur))}%)` });
+      const info = el.querySelector('.info');
+      subir(info.querySelector('.num'), eo(P(lx, .25, .6)), 30);
+      const sq = P(lx, .35, .6);
+      st(info.querySelector('.sello'), { opacity: sq > 0 ? 1 : 0, transform: `rotate(-7deg) scale(${lerp(2.6, 1, eo(sq))})` });
+      const h = eo(P(lx, .45, .9)); st(info.querySelector('h2'), { opacity: h, transform: `translateX(${(1 - h) * -120}px)` });
+      subir(info.querySelector('p'), eo(P(lx, .65, 1.05)), 30);
+      const r = back(P(lx, .8, 1.2)); st(info.querySelector('.rec'), { opacity: P(lx, .8, .95), transform: `scale(${lerp(.6, 1, r)})`, transformOrigin: 'left center' });
+    });
+    $$('#ticks b').forEach((b, i) => b.style.transform = `scaleX(${P(x, i * dur, (i + 1) * dur)})`);
+    st($('#ticks'), { zIndex: 10 });
+  }
+
+  // ---- títulos S3 / S5 ----
+  [['s3'], ['s5']].forEach(([id]) => {
+    if (t < S[id][0] || t >= S[id][1]) return;
+    const x = u(id), sc = $('#' + id);
+    subir(sc.querySelector('.parte'), eo(P(x, .3, .7)), 30);
+    const a = eo(P(x, .35, .85)), b = eo(P(x, .5, 1));
+    st(sc.querySelector('.l1'), { opacity: a, transform: `translateX(${(1 - a) * -300}px)` });
+    st(sc.querySelector('.l2'), { opacity: b, transform: `translateX(${(1 - b) * 300}px)` });
+    sc.querySelector('.linea').style.width = (eo(P(x, .8, 1.3)) * 520) + 'px';
+    subir(sc.querySelector('p'), eo(P(x, 1, 1.4)), 30);
+    sc.querySelector('.titulo').style.transform = `scale(${1 + x * .025})`;
+  });
+
+  // ---- S4 laptop ----
+  if (t >= S.s4[0] && t < S.s4[1]) {
+    const x = u('s4');
+    const e = eo(P(x, .2, 1.1));
+    st($('#lap'), { opacity: P(x, .2, .5), transform: `perspective(1800px) translateY(${(1 - e) * 260}px) rotateX(${(1 - e) * 18}deg)` });
+    subir($('#s4 .col .cond'), eo(P(x, .5, .9)), 30); subir($('#s4 .col h3'), eo(P(x, .6, 1.1)), 40);
+    const y = keyframes(x, [[0, 0], [1.6, 0], [2.8, W.hist], [3.9, W.hist], [5.1, W.cart], [6.9, W.cart], [7.9, W.qr], [8.7, W.qr], [9.7, W.vis], [11.2, W.vis]]);
+    scrollW(y);
+    const marcas = [2.8, 5.1, 7.9, 9.7];
+    marcas.forEach((m, i) => {
+      const el = $('#p' + (i + 1)), q = back(P(x, m - .5, m));
+      st(el, { opacity: P(x, m - .5, m - .3), transform: `translateX(${(1 - q) * 80}px)` });
+      el.classList.toggle('act', x >= m - .2 && (i === 3 || x < marcas[i + 1] - .2));
+    });
+  }
+
+  // ---- S6 teléfono ----
+  if (t >= S.s6[0] && t < S.s6[1]) {
+    const x = u('s6');
+    const e = eo(P(x, .2, 1.1));
+    st($('#tel'), { opacity: P(x, .2, .5), transform: `perspective(1600px) translateY(${(1 - e) * 200}px) rotateY(${lerp(25, 0, e)}deg)` });
+    subir($('#s6 .der .cond'), eo(P(x, .5, .9)), 30);
+    const fr = [[.6, 3.6], [3.6, 7.6], [7.6, 11]];
+    fr.forEach(([a, b], i) => {
+      const inn = eo(P(x, a, a + .45)), out = P(x, b - .3, b);
+      st($('#f' + (i + 1)), { opacity: inn * (1 - out), transform: `translateY(${(1 - inn) * 50 - out * 50}px)` });
+      $('#ps' + (i + 1)).classList.toggle('act', x >= a && x < b);
+    });
+    subir($('#s6 .pasos'), eo(P(x, .9, 1.4)), 30);
+    scrollM(keyframes(x, [[0, 0], [1.8, 0], [3.0, M.tacos], [5.6, M.tacos], [6.8, M.rancho], [11, M.rancho]]));
+    [[3.5, 4], [4.2, 5], [4.9, 4], [7.3, 9], [8.1, 11]].forEach(([tt, idx], k) => {
+      if (x >= tt && !hechos['tap' + k]) { hechos['tap' + k] = 1; tocar(idx); hechos.tt = tt; }
+    });
+    const dt = x - (hechos.tt ?? -9);
+    if (hechos.toque && dt >= 0 && dt < .5) st($('#toque'), { left: hechos.toque.x + 'px', top: hechos.toque.y + 'px', opacity: 1 - dt / .5, transform: `scale(${lerp(.4, 1.3, dt / .5)})` });
+    else $('#toque').style.opacity = 0;
+  }
+
+  // ---- S7 QR ----
+  if (t >= S.s7[0] && t < S.s7[1]) {
+    const x = u('s7');
+    const e = eo(P(x, .2, 1.1));
+    st($('#tarjeta'), { opacity: P(x, .2, .5), transform: `perspective(1600px) translateX(${(1 - e) * -300}px) rotateY(${lerp(-30, 8, e)}deg) rotateZ(${lerp(-6, -1.5, e)}deg)` });
+    subir($('#s7 .col .cond'), eo(P(x, .5, .9)), 30); subir($('#s7 .col h3'), eo(P(x, .6, 1.1)), 40);
+    const sc = P(x, 1.4, 3.4);
+    $$('.esq').forEach(q => st(q, { opacity: P(x, 1.2, 1.5), transform: `scale(${lerp(1.5, 1, eo(P(x, 1.2, 1.6)))})` }));
+    st($('#laser'), { opacity: sc > 0 && sc < 1 ? 1 : 0, top: (8 + Math.abs(Math.sin(sc * Math.PI * 2)) * 264) + 'px' });
+    const ok = back(P(x, 3.4, 3.8));
+    st($('#ok'), { opacity: P(x, 3.4, 3.5), transform: `scale(${ok})` });
+    [1.6, 2.3, 3.0].forEach((m, i) => { const q = back(P(x, m, m + .45)); st($('#q' + (i + 1)), { opacity: P(x, m, m + .15), transform: `translateX(${(1 - q) * 80}px)` }); });
+  }
+
+  // ---- S8 outro ----
+  if (t >= S.s8[0]) {
+    const x = u('s8');
+    st($('#s8med'), { transform: `scale(${back(P(x, .3, 1.1))}) rotate(${(1 - P(x, .3, 1.1)) * 90}deg)`, opacity: P(x, .3, .5) });
+    const h = P(x, .9, 1.25); st($('#s8h'), { opacity: h > 0 ? 1 : 0, transform: `scale(${lerp(2.4, 1, eo(h))})` });
+    ['#c1', '#c2', '#c3'].forEach((c, i) => subir($(c), eo(P(x, 1.6 + i * .25, 2.1 + i * .25)), 40));
+    subir($('#s8dir'), eo(P(x, 2.6, 3.1)), 30);
+    st($('#negro'), { opacity: P(x, 5.7, 6.5) });
+    st($('#s8'), { transform: `scale(${1 + x * .01})` });
+  }
+};
+window.render(0);
+</script>
+</body></html>
