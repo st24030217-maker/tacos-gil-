@@ -97,7 +97,9 @@ section{padding:100px 0;position:relative}
 .cartel::before{content:"";position:absolute;top:-10px;left:50%;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e1b75c,#7a5a1d);transform:translateX(-50%);box-shadow:0 3px 4px rgba(0,0,0,.35)}
 .cartel .sb{font-family:"Rye";font-size:30px;line-height:1;letter-spacing:.04em}
 .cartel .sb-sub{font-family:"Barlow Condensed";letter-spacing:.3em;font-size:12px;text-transform:uppercase;color:var(--gris);border-block:1px solid var(--tinta);padding:3px 0;margin:8px 0 14px}
-.cartel .foto{aspect-ratio:1;display:grid;place-items:center;font-size:90px;background:radial-gradient(circle,#fbf3e2,#e5d3b0);border:3px solid var(--tinta);filter:sepia(.35) contrast(1.05)}
+.cartel .foto{aspect-ratio:1;overflow:hidden;border:3px solid var(--tinta);background:#e5d3b0}
+.cartel .foto img{width:100%;height:100%;object-fit:cover;filter:sepia(.18) contrast(1.05) saturate(1.05);transition:transform .5s}
+.cartel:hover .foto img{transform:scale(1.07)}
 .cartel h3{font-family:"Rye";font-weight:400;font-size:22px;line-height:1.15;margin-top:14px;min-height:52px;display:grid;place-items:center}
 .cartel p{font-size:14px;color:var(--gris);min-height:44px}
 .cartel .recompensa{margin-top:10px;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.2em;font-size:12px}

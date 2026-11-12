@@ -34,8 +34,8 @@ window.GILS = {
       id: "tacos", nombre: "Tacos", icono: "🌮",
       nota: "Tortilla de maíz hecha a mano · Orden de 5",
       items: [
-        { n: "Asada al Carbón", d: "Res a las brasas, cebolla, cilantro y salsa de la casa", p: 110, tag: "Favorito" },
-        { n: "Al Pastor", d: "Cerdo adobado al trompo con piña", p: 95 },
+        { n: "Tacos de Asada", d: "Res al carbón con guacamole, cebolla y cilantro", p: 110, tag: "Favorito", foto: "img/platillos/tacos-asada.jpg" },
+        { n: "Tacos al Pastor", d: "Cerdo adobado al trompo con piña", p: 95, tag: "Favorito", foto: "img/platillos/tacos-pastor.jpg" },
         { n: "Tripita Dorada", d: "Crujiente, con limón y salsa roja", p: 120 },
         { n: "Barbacoa Lagunera", d: "Res cocida lento, consomé incluido", p: 120 },
         { n: "Lengua", d: "Suave, bañada en salsa verde", p: 135 }
@@ -45,10 +45,10 @@ window.GILS = {
       id: "rancho", nombre: "Del Rancho", icono: "🥩",
       nota: "Cortes a la parrilla con frijoles charros, guacamole y tortillas",
       items: [
-        { n: "Arrachera 300 g", d: "Marinada de la casa, cebollitas y chile toreado", p: 245, tag: "Favorito" },
+        { n: "Arrachera 300 g", d: "Marinada de la casa, cebollitas y chile toreado", p: 245, tag: "Favorito", foto: "img/platillos/arrachera.jpg" },
         { n: "Rib Eye 400 g", d: "Corte grueso al carbón, término a tu gusto", p: 345 },
         { n: "Carne Asada Norteña", d: "Con queso asado, nopales y rajas", p: 215 },
-        { n: "Parrillada Gil's (2 personas)", d: "Arrachera, chorizo, costilla, nopales, cebollitas y queso", p: 520, tag: "Para compartir" }
+        { n: "Parrillada Gil's", d: "Para 2 · Arrachera, chorizo, costilla, nopales, cebollitas y queso", p: 520, tag: "Para compartir", foto: "img/platillos/parrillada.jpg" }
       ]
     },
     {

@@ -49,7 +49,7 @@ async function desplazar(ctx, page, hasta, seg) {
   await abrir(page, url('herramientas/escena.html', '#web')); await quieto(page, 2);
   await abrir(page, url('index.html')); await quieto(page, 2.5);
   const paradas = await page.evaluate(() =>
-    ['#historia', '#favoritos', '.qr-banda', '#visitanos'].map(s => document.querySelector(s).offsetTop - 70)
+    ['#historia', '#favoritos', '#carteles', '.qr-banda', '#visitanos'].map(s => document.querySelector(s).getBoundingClientRect().top + scrollY - (s === '#carteles' ? 110 : 70))
       .concat(document.documentElement.scrollHeight));
   for (const p of paradas) { await desplazar(page, page, p, 1.8); await quieto(page, 1.2); }
   // 3. Menú digital en celular

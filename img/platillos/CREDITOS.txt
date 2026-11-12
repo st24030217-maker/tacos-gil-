@@ -1,0 +1,6 @@
+Fotos de Unsplash (Licencia Unsplash: uso comercial gratuito, sin atribución obligatoria).
+Reemplazar por fotos reales del restaurante cuando estén disponibles.
+- tacos-asada.jpg   https://unsplash.com/photos/2bUURz6BHDU  (Michael Kahn)
+- tacos-pastor.jpg  https://unsplash.com/photos/_j4S4V2C8ew
+- arrachera.jpg     https://unsplash.com/photos/eRyMytuT0yg  (amirali mirhashemian)
+- parrillada.jpg    https://unsplash.com/photos/QII-IQaQpvs  (John Fornander)

@@ -141,11 +141,11 @@
 
   // Carteles "Se busca"
   const favs = [];
-  G.categorias.forEach(c => c.items.forEach(i => { if (i.tag && !favs.some(f => f.cat === c.id)) favs.push({...i, icono:c.icono, cat:c.id}); }));
+  G.categorias.forEach(c => c.items.forEach(i => { if (i.foto) favs.push(i); }));
   document.getElementById('carteles').innerHTML = favs.slice(0,4).map(f => `
     <article class="cartel rev">
       <div class="sb">SE BUSCA</div><div class="sb-sub">Por delicioso</div>
-      <div class="foto">${f.icono}</div>
+      <div class="foto"><img src="${f.foto}" alt="${f.n}"></div>
       <h3>${f.n}</h3><p>${f.d}</p>
       <div class="recompensa">Recompensa</div><div class="precio">$${f.p}</div>
     </article>`).join('');
