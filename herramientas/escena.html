@@ -1,0 +1,32 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:100vw;height:100vh;overflow:hidden;font-family:Barlow,sans-serif;color:#EDE3D1;display:grid;place-items:center;text-align:center;
+background:radial-gradient(60% 60% at 50% 45%,#2b211c,transparent 70%),#141110 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .6 0 0 0 0 .5 0 0 0 0 .4 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:"";position:absolute;inset:22px;border:2px dashed rgba(199,154,62,.35);pointer-events:none}
+.med{width:190px;height:190px;margin:0 auto 18px;border-radius:50%;background:#F6EFE2;display:grid;place-items:center;box-shadow:inset 0 0 0 7px #7B1A13,inset 0 0 0 12px #F6EFE2,inset 0 0 0 14px #141110,0 0 0 6px rgba(199,154,62,.7);animation:pop .9s cubic-bezier(.2,.9,.3,1.4) both}
+.med img{width:66%;transform:translateY(4%)}
+.texto{width:440px;margin:0 auto;animation:up .8s .25s both}
+.cond{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.3em;font-weight:700;color:#C79A3E;font-size:18px;animation:up .7s .15s both;display:block}
+h1{font-family:Rye;font-weight:400;font-size:96px;line-height:1.02;margin:14px 0 14px;animation:up .8s .3s both}
+h1 em{font-style:normal;color:#D9493C}
+p{font-size:24px;opacity:.85;animation:up .8s .5s both}
+.orn{display:flex;align-items:center;justify-content:center;gap:16px;color:#C79A3E;margin:18px 0;animation:up .8s .4s both;font-size:22px}
+.orn::before,.orn::after{content:"";width:80px;height:2px;background:#EDE3D1}
+ul{list-style:none;display:flex;gap:16px;justify-content:center;margin-top:30px;animation:up .8s .7s both}
+li{border:2px dashed rgba(237,227,209,.45);padding:12px 22px;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.14em;font-weight:700;font-size:20px}
+li b{color:#C79A3E}
+@keyframes pop{from{transform:scale(0) rotate(-40deg)}}
+@keyframes up{from{opacity:0;transform:translateY(30px)}}
+</style></head><body><div id="c"></div>
+<script>
+const E={
+ inicio:`<div class="med"><img src="../img/vaquero.png"></div><img class="texto" src="../img/logo-texto-claro.png"><div class="orn">★</div><span class="cond">Propuesta digital</span><ul><li><b>★</b> Página web</li><li><b>★</b> Menú digital</li><li><b>★</b> Código QR</li></ul>`,
+ web:`<span class="cond">Parte I</span><h1>Página <em>Web</em></h1><div class="orn">★</div><p>Casi 50 años de historia, ahora en internet</p>`,
+ menu:`<span class="cond">Parte II</span><h1>Menú <em>Digital</em></h1><div class="orn">★</div><p>Búsqueda, categorías y pedidos directo a WhatsApp</p>`,
+ qr:`<span class="cond">Parte III</span><h1>Código <em>QR</em></h1><div class="orn">★</div><p>Tarjetas listas para imprimir y poner en cada mesa</p>`,
+ fin:`<div class="med"><img src="../img/vaquero.png"></div><h1>¿Lo <em>lanzamos</em>?</h1><p>Web + Menú digital + QR · Fácil de actualizar · Funciona en cualquier celular</p><ul><li><b>★</b> Más clientes</li><li><b>★</b> Menos menús impresos</li><li><b>★</b> Pedidos por WhatsApp</li></ul>`
+};
+document.getElementById('c').innerHTML=E[location.hash.slice(1)]||E.inicio;
+</script></body></html>

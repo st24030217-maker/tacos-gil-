@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#141110">
+<title>Menú | Gil's Restaurant · Est. 1977</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="img/vaquero.png">
+<style>
+:root{--guinda:#7B1A13;--guinda-viva:#A3241A;--negro:#141110;--pergamino:#EDE3D1;--papel:#F6EFE2;--laton:#C79A3E;--tinta:#1B1512;--gris:#6E5F52;
+--grano:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--pergamino) var(--grano);color:var(--tinta);-webkit-tap-highlight-color:transparent}
+.cond{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.18em;font-weight:600}
+
+.cab{background:var(--negro) var(--grano);color:var(--pergamino);padding:26px 16px 30px;text-align:center;position:relative}
+.cab::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:
+  conic-gradient(from 135deg at 50% 0,var(--negro) 0 90deg,transparent 0) 0 0/20px 10px}
+.med{width:104px;height:104px;margin:0 auto;border-radius:50%;background:var(--papel) var(--grano);display:grid;place-items:center;box-shadow:inset 0 0 0 4px var(--guinda),inset 0 0 0 7px var(--papel),inset 0 0 0 8px var(--negro),0 0 0 4px rgba(199,154,62,.6)}
+.med img{width:66%;transform:translateY(4%)}
+.cab .txt{width:190px;margin:12px auto 0}
+.cab .lugar{font-size:13px;opacity:.75;margin-top:4px}
+.cab .acc{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.cab .acc a{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.12em;font-weight:600;font-size:13px;color:var(--pergamino);text-decoration:none;border:1px dashed rgba(237,227,209,.5);padding:7px 13px;border-radius:4px}
+
+.barra{position:sticky;top:0;z-index:20;background:rgba(237,227,209,.96);backdrop-filter:blur(6px);border-bottom:3px double var(--guinda);padding:20px 0 10px}
+.buscar{display:block;margin:0 16px 10px;position:relative}
+.buscar input{width:100%;padding:12px 14px 12px 42px;border-radius:4px;border:2px solid var(--tinta);font:inherit;font-size:16px;background:var(--papel);outline:none}
+.buscar input:focus{border-color:var(--guinda)}
+.buscar svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--gris)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:0 16px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:2px solid var(--tinta);background:transparent;padding:7px 14px;border-radius:4px;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:14px;color:var(--tinta);cursor:pointer;transition:.2s}
+.tabs button.act{background:var(--guinda);color:var(--papel);border-color:var(--guinda)}
+
+main{max-width:720px;margin:0 auto;padding:4px 16px 120px}
+.cat{padding-top:30px;scroll-margin-top:126px}
+.cat .titulo{text-align:center;margin-bottom:14px}
+.cat .titulo .cond{color:var(--guinda);font-size:12px}
+.cat h2{font-family:Rye;font-weight:400;font-size:34px;line-height:1.1;margin-top:4px}
+.cat .orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--laton);margin:6px 0}
+.cat .orn::before,.cat .orn::after{content:"";width:40px;height:2px;background:var(--tinta)}
+.cat .nota{color:var(--gris);font-size:13px;font-style:italic}
+.item{display:flex;gap:12px;align-items:center;background:var(--papel);padding:14px;margin-bottom:10px;border-radius:4px;box-shadow:0 2px 0 rgba(27,21,18,.12);outline:1.5px dashed rgba(123,26,19,.28);outline-offset:-6px;animation:entra .45s both}
+.item .txt{flex:1;min-width:0}
+.item h3{font-size:17px;font-weight:700;line-height:1.25}
+.item p{font-size:13.5px;color:var(--gris);margin-top:3px;line-height:1.4}
+.tag{display:inline-block;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:700;background:var(--negro);color:var(--laton);padding:2px 7px;border-radius:2px;margin-left:6px;vertical-align:2px}
+.precio{font-family:Rye;color:var(--guinda);font-size:21px;white-space:nowrap}
+.mas{width:36px;height:36px;flex:none;border-radius:50%;border:0;background:var(--guinda);color:var(--papel);font-size:22px;cursor:pointer;line-height:1;box-shadow:inset 0 0 0 2px var(--guinda),inset 0 0 0 3px rgba(246,239,226,.5);transition:transform .15s}
+.mas:active{transform:scale(.88)}
+.mas.ok{background:var(--negro)}
+.vacio{text-align:center;color:var(--gris);padding:40px 0;display:none;font-family:Rye;font-size:20px}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}}
+
+.pedido{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));max-width:696px;margin:0 auto;background:var(--negro) var(--grano);color:var(--papel);border-radius:6px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 14px 30px rgba(0,0,0,.35);outline:1.5px dashed rgba(199,154,62,.6);outline-offset:-6px;transform:translateY(160%);transition:transform .4s cubic-bezier(.2,.9,.3,1.3);z-index:30;text-decoration:none}
+.pedido.on{transform:none}
+.pedido b{font-size:16px}
+.pedido small{display:block;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:var(--laton)}
+.pedido .tot{font-family:Rye;font-size:24px;color:var(--laton)}
+.pie{text-align:center;margin-top:34px;color:var(--gris);font-size:12px}
+.pie img{width:150px;margin:0 auto 8px;opacity:.85}
+</style>
+</head>
+<body>
+<header class="cab">
+  <div class="med"><img src="img/vaquero.png" alt=""></div>
+  <img class="txt" src="img/logo-texto-claro.png" alt="Gil's Restaurant · Est. 1977">
+  <p class="lugar">Av. Victoria 277, Centro · Gómez Palacio, Dgo.</p>
+  <div class="acc">
+    <a id="tel">☎ Llamar</a>
+    <a id="mapa" target="_blank" rel="noopener">★ Cómo llegar</a>
+    <a href="index.html">↩ Sitio web</a>
+  </div>
+</header>
+
+<div class="barra">
+  <label class="buscar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar: arrachera, pastor, flan…" autocomplete="off"></label>
+  <nav class="tabs" id="tabs"></nav>
+</div>
+
+<main id="menu"></main>
+<p class="vacio" id="vacio">Ese platillo no anda por aquí…</p>
+
+<a class="pedido" id="pedido" target="_blank" rel="noopener">
+  <div><b id="p-cant">0 platillos</b><small>Enviar pedido por WhatsApp →</small></div>
+  <span class="tot" id="p-total">$0</span>
+</a>
+
+<script src="menu-data.js"></script>
+<script>
+const G = window.GILS, $ = s => document.querySelector(s);
+$('#tel').href = 'tel:' + G.telefonoLink; $('#mapa').href = G.mapa;
+
+$('#tabs').innerHTML = G.categorias.map((c,i) => `<button data-id="${c.id}" class="${i?'':'act'}">${c.nombre}</button>`).join('');
+$('#menu').innerHTML = G.categorias.map(c => `
+  <section class="cat" id="${c.id}">
+    <div class="titulo"><span class="cond">★ Gil's · Est. 1977</span><h2>${c.nombre}</h2><div class="orn">★</div>${c.nota ? `<p class="nota">${c.nota}</p>` : ''}</div>
+    ${c.items.map((it,k) => `
+      <div class="item" data-q="${(it.n+' '+it.d).toLowerCase()}" style="animation-delay:${k*40}ms">
+        <div class="txt"><h3>${it.n}${it.tag?`<span class="tag">${it.tag}</span>`:''}</h3><p>${it.d}</p></div>
+        <div class="precio">$${it.p}</div>
+        <button class="mas" aria-label="Agregar ${it.n}" data-n="${it.n}" data-p="${it.p}">+</button>
+      </div>`).join('')}
+  </section>`).join('') + `<div class="pie"><img src="img/logo.png" alt="">Precios en MXN, IVA incluido. Sujetos a cambio sin previo aviso.</div>`;
+
+document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => document.getElementById(b.dataset.id).scrollIntoView({behavior:'smooth'}));
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) document.querySelectorAll('#tabs button').forEach(b => {
+    const on = b.dataset.id === e.target.id; b.classList.toggle('act', on);
+    if (on) b.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+  });
+}), {rootMargin:'-140px 0px -60% 0px'});
+document.querySelectorAll('.cat').forEach(s => io.observe(s));
+
+$('#q').addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase(); let n = 0;
+  document.querySelectorAll('.cat').forEach(sec => {
+    let vis = 0;
+    sec.querySelectorAll('.item').forEach(it => { const ok = !q || it.dataset.q.includes(q); it.style.display = ok ? '' : 'none'; vis += ok; });
+    sec.style.display = vis ? '' : 'none'; n += vis;
+  });
+  $('#vacio').style.display = n ? 'none' : 'block';
+});
+
+const ped = {};
+document.addEventListener('click', e => {
+  const b = e.target.closest('.mas'); if (!b) return;
+  ped[b.dataset.n] = ped[b.dataset.n] || {c:0, p:+b.dataset.p}; ped[b.dataset.n].c++;
+  b.textContent = '✓'; b.classList.add('ok'); setTimeout(() => { b.textContent = '+'; b.classList.remove('ok'); }, 600);
+  let cant = 0, tot = 0, txt = "¡Hola Gil's! Quiero ordenar:\n";
+  for (const [n,v] of Object.entries(ped)) { cant += v.c; tot += v.c*v.p; txt += `• ${v.c} x ${n}\n`; }
+  txt += `Total aprox: $${tot}`;
+  $('#p-cant').textContent = `${cant} platillo${cant>1?'s':''}`; $('#p-total').textContent = '$' + tot;
+  $('#pedido').href = `https://wa.me/${G.whatsapp}?text=${encodeURIComponent(txt)}`; $('#pedido').classList.add('on');
+});
+</script>
+</body>
+</html>

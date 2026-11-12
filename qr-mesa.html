@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR de Mesa | Gil's Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  @page{size:letter;margin:10mm}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Barlow,sans-serif;background:#2a221e;display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;min-height:100vh;padding:30px 16px}
+  .tarjeta{width:92mm;height:136mm;background:#F3E6CC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    display:flex;flex-direction:column;align-items:center;padding:7mm 6mm 6mm;position:relative;box-shadow:0 14px 34px rgba(0,0,0,.45);
+    outline:1.2mm solid #141110;outline-offset:-3.5mm}
+  .tarjeta::before{content:"";position:absolute;inset:5.5mm;border:.4mm dashed #7B1A13;pointer-events:none}
+  .logo{width:60mm;margin-top:3mm}
+  .linea{display:flex;align-items:center;gap:2.5mm;color:#C79A3E;font-size:4mm;margin:3mm 0 1mm}
+  .linea::before,.linea::after{content:"";width:14mm;height:.5mm;background:#141110}
+  h2{font-family:Rye;font-weight:400;font-size:6.4mm;color:#141110;line-height:1;white-space:nowrap}
+  .sub{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.2em;font-size:3mm;color:#6E5F52;margin:1.5mm 0 3.5mm}
+  .qr{background:#fff;padding:2.6mm;border:1.2mm solid #7B1A13;box-shadow:0 0 0 .6mm #F3E6CC,0 0 0 1.2mm #141110}
+  .qr img{width:40mm;height:40mm;display:block}
+  .pie{margin-top:auto;margin-bottom:3mm;text-align:center;font-size:2.8mm;color:#4a3d33;line-height:1.45}
+  .pie b{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.12em;color:#7B1A13;font-size:3.1mm}
+  @media print{body{background:#fff;padding:0;min-height:0}.tarjeta{box-shadow:none}}
+</style>
+</head>
+<body>
+  <!-- Dos tarjetas por hoja carta: imprimir, recortar y poner en porta-menú de mesa -->
+  <div class="tarjeta">
+    <img class="logo" src="img/logo.png" alt="Gil's Restaurant · Est. 1977">
+    <div class="linea">★</div>
+    <h2>ESCANEA EL MENÚ</h2>
+    <p class="sub">Apunta la cámara de tu celular</p>
+    <div class="qr"><img src="qr-menu.png" alt="QR menú"></div>
+    <div class="pie"><b>Pide por WhatsApp desde tu mesa</b><br>Av. Victoria 277, Centro · Gómez Palacio<br>☎ 871 715 1541</div>
+  </div>
+  <div class="tarjeta">
+    <img class="logo" src="img/logo.png" alt="Gil's Restaurant · Est. 1977">
+    <div class="linea">★</div>
+    <h2>ESCANEA EL MENÚ</h2>
+    <p class="sub">Apunta la cámara de tu celular</p>
+    <div class="qr"><img src="qr-menu.png" alt="QR menú"></div>
+    <div class="pie"><b>Pide por WhatsApp desde tu mesa</b><br>Av. Victoria 277, Centro · Gómez Palacio<br>☎ 871 715 1541</div>
+  </div>
+</body>
+</html>

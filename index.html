@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gil's Restaurant | Desde 1977 · Gómez Palacio</title>
+<meta name="description" content="Gil's Restaurant — desde 1977 en el centro de Gómez Palacio, Durango. Desayunos, tacos, cortes y antojitos laguneros. Consulta nuestro menú digital.">
+<meta property="og:title" content="Gil's Restaurant · Est. 1977">
+<meta property="og:image" content="img/logo-original.png">
+<meta name="theme-color" content="#141110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="img/vaquero.png">
+</head>
+<body>
+
+<div class="top">★ Sirviendo a La Laguna <b>desde 1977</b> · Av. Victoria 277, Centro, Gómez Palacio ★</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="marca" href="#"><img src="img/logo.png" alt="Gil's Restaurant · Est. 1977"></a>
+    <ul>
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#favoritos">Favoritos</a></li>
+      <li><a href="menu.html">Menú</a></li>
+      <li><a href="#visitanos">Visítanos</a></li>
+    </ul>
+    <a class="btn btn-guinda" href="menu.html">Ver menú</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <img class="logo-grande" src="img/logo.png" alt="Gil's Restaurant · Est. 1977">
+      <h1>Sazón y <em>tradición</em> desde 1977</h1>
+      <p class="lead">Desayunos, tacos al carbón, cortes y antojitos preparados como siempre: al momento, con tortilla hecha a mano y salsas de la casa.</p>
+      <div class="acciones">
+        <a class="btn btn-guinda" href="menu.html">★ Ver menú digital</a>
+        <a class="btn btn-linea" id="btn-wa" href="#">Pedir por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquesina" aria-hidden="true"><div class="pista" id="marq"></div></div>
+
+<section id="historia" class="historia">
+  <div class="wrap">
+    <div class="num rev"><small>Desde</small>1977</div>
+    <div class="rev">
+      <span class="cond estrella">★ Nuestra historia</span>
+      <h2>Casi 50 años sirviendo <em>con el corazón</em></h2>
+      <p>Lo que empezó como una cocina familiar en el centro de Gómez Palacio se volvió punto de reunión de generaciones de laguneros. Las mismas recetas, el mismo sazón y la misma hospitalidad de rancho que nos trajeron hasta aquí.</p>
+      <div class="datos">
+        <div class="dato puntada"><b>1977</b><span>Abrimos</span></div>
+        <div class="dato puntada"><b id="anios">49</b><span>Años de sazón</span></div>
+        <div class="dato puntada"><b>100%</b><span>Hecho en casa</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="favoritos">
+  <div class="wrap">
+    <div class="titulo-sec rev">
+      <span class="cond">★ Los más pedidos ★</span>
+      <h2>Los más buscados<br>de la casa</h2>
+      <p>Estos platillos tienen fama en toda La Laguna. Atrápalos antes de que se acaben.</p>
+    </div>
+    <div class="carteles" id="carteles"></div>
+    <div class="centro"><a class="btn btn-negro" href="menu.html">Ver el menú completo →</a></div>
+  </div>
+</section>
+
+<section class="qr-banda">
+  <div class="wrap">
+    <div class="qr-caja rev"><img src="qr-menu.png" alt="Código QR del menú digital de Gil's"><span>Escanea y ordena</span></div>
+    <div class="rev">
+      <span class="cond" style="color:var(--laton)">★ Menú digital</span>
+      <h2>El menú de siempre,<br>ahora en tu celular</h2>
+      <p>Escanea el código en tu mesa y revisa platillos y precios al instante. Arma tu pedido y envíalo por WhatsApp. Sin descargar nada.</p>
+      <a class="btn btn-laton" href="menu.html">Abrir menú digital</a>
+    </div>
+  </div>
+</section>
+
+<section id="visitanos" class="visita">
+  <div class="wrap">
+    <div class="titulo-sec rev">
+      <span class="cond">★ Te esperamos ★</span>
+      <h2>Visítanos</h2>
+    </div>
+    <div class="grid">
+      <div class="ficha rev">
+        <h3>Gil's Restaurant</h3>
+        <div class="fila"><span class="ic">★</span><div><b>Dirección</b><br><span id="dir"></span><br><a id="lnk-mapa" target="_blank" rel="noopener">Cómo llegar →</a></div></div>
+        <div class="fila"><span class="ic">☎</span><div><b>Teléfono</b><br><a id="lnk-tel"></a></div></div>
+        <div class="fila"><span class="ic">◷</span><div style="flex:1"><b>Horario</b><table class="horario" id="horario"></table></div></div>
+      </div>
+      <div class="mapa rev">
+        <iframe title="Mapa de Gil's Restaurant" src="https://www.google.com/maps?q=Av.+Victoria+277,+Centro,+G%C3%B3mez+Palacio,+Durango&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="pie-marca">
+      <div class="med"><img src="img/vaquero.png" alt=""></div>
+      <div class="txt"><img src="img/logo-texto-claro.png" alt="Gil's Restaurant · Est. 1977"></div>
+    </div>
+    <nav><a href="menu.html">Menú</a><a href="#historia">Historia</a><a href="#visitanos">Ubicación</a><a id="lnk-fb" target="_blank" rel="noopener">Facebook</a></nav>
+    <div class="legal">© <span id="y"></span> Gil's Restaurant · Gómez Palacio, Durango · Desde 1977</div>
+  </div>
+</footer>
+
+<a class="flotante" id="wa-flot" aria-label="Pedir por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.700 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.700 11.8 11.8 0 0 0 4.5 4c1.700.7 2.300.8 3.200.6a2.7 2.7 0 0 0 1.800-1.300 2.2 2.2 0 0 0 .2-1.300c-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<script src="menu-data.js"></script>
+<script>
+  const G = window.GILS;
+  const wa = `https://wa.me/${G.whatsapp}?text=${encodeURIComponent("¡Hola Gil's! Quiero hacer un pedido 🤠")}`;
+  document.getElementById('btn-wa').href = wa;
+  document.getElementById('wa-flot').href = wa;
+  document.getElementById('dir').textContent = G.direccion;
+  document.getElementById('lnk-mapa').href = G.mapa;
+  const tel = document.getElementById('lnk-tel'); tel.textContent = G.telefono; tel.href = 'tel:' + G.telefonoLink;
+  document.getElementById('lnk-fb').href = G.facebook;
+  document.getElementById('horario').innerHTML = G.horario.map(([d,h]) => `<tr><td>${d}</td><td>${h}</td></tr>`).join('');
+  document.getElementById('anios').textContent = new Date().getFullYear() - G.desde;
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Marquesina con las categorías
+  const frase = G.categorias.map(c => `<span>${c.nombre}</span><span class="est">★</span>`).join('') + `<span>Desde 1977</span><span class="est">★</span>`;
+  document.getElementById('marq').innerHTML = frase.repeat(4);
+
+  // Carteles "Se busca"
+  const favs = [];
+  G.categorias.forEach(c => c.items.forEach(i => { if (i.tag && !favs.some(f => f.cat === c.id)) favs.push({...i, icono:c.icono, cat:c.id}); }));
+  document.getElementById('carteles').innerHTML = favs.slice(0,4).map(f => `
+    <article class="cartel rev">
+      <div class="sb">SE BUSCA</div><div class="sb-sub">Por delicioso</div>
+      <div class="foto">${f.icono}</div>
+      <h3>${f.n}</h3><p>${f.d}</p>
+      <div class="recompensa">Recompensa</div><div class="precio">$${f.p}</div>
+    </article>`).join('');
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ver'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.rev').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
